@@ -70,3 +70,36 @@
     font-size: 18px;
     color: #0672CB;
   }
+
+
+  .filter-icon {
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .filter-popover {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-popover h4 {
+    margin: 0 0 10px;
+  }
+  
+  .filter-popover label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .filter-popover button {
+    margin-top: 10px;
+    margin-right: 5px;
+  }
+
+  .filter-button {
+    margin-left: auto;
+  }

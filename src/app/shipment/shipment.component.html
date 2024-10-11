@@ -6,8 +6,24 @@
             </div>
         </div>
     <div class="result" >
-       <span class="shipment-size"> {{getLength(shipments?.TotalNumberOfRecords)}}</span><span class="result-txt">&nbsp;results</span>
-   <app-common-table *ngIf="getLength(shipments?.TotalNumberOfRecords) != '0'" [shipments] ="shipments" class="table-cls" [refreshCounter]="refreshCounter"></app-common-table>
+       <span class="shipment-size"> {{getLength(filteredShipments?.TotalNumberOfRecords)}}</span><span class="result-txt">&nbsp;results</span>
+       <button class="filter-button" (click)="togglePopover()">Filter</button>
+       <div class="filter-popover" *ngIf="isPopoverOpen">
+        <h4>Filter by Shipment Status</h4>
+        <form>
+          <div *ngFor="let status of applicableStatuses">
+            <label>
+              <input type="checkbox" [(ngModel)]="statusFilters[status]" name="{{status}}" /> {{ status }}
+            </label>
+          </div>
+        </form>
+        <button (click)="applyFilters()">Apply Filter</button>
+        <button (click)="resetFilter()">Reset Filter</button>
+      </div>
+      
+
+       
+   <app-common-table *ngIf="getLength(filteredShipments?.TotalNumberOfRecords) != '0'" [shipments] ="filteredShipments" class="table-cls" [refreshCounter]="refreshCounter"></app-common-table>
     </div>
-   <div class="center-screen" *ngIf="getLength(shipments?.TotalNumberOfRecords) == '0'"> {{'home.NO_DATA_FOUND' | translate}}</div>
+   <div class="center-screen" *ngIf="getLength(filteredShipments?.TotalNumberOfRecords) == '0'"> {{'home.NO_DATA_FOUND' | translate}}</div>
 </div>

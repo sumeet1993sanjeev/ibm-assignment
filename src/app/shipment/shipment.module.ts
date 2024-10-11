@@ -8,6 +8,7 @@ import { ShipmentDetailsComponent } from './shipment-details/shipment-details.co
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CommonTableComponent } from '../basecomponent/table-component/common-table/common-table.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     ShipmentRoutingModule,
     InfiniteScrollModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule 
   ]
 })
 export class ShipmentModule { }

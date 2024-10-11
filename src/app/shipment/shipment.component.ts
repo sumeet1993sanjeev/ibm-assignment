@@ -12,15 +12,31 @@ export class ShipmentComponent {
   rawData: any = [];
   searchTerm: any;
   refreshCounter = 0;
+  statusFilters: any = {};
+  isPopoverOpen: boolean = false;
+  applicableStatuses: any = [
+    'Backroom Pick In Progress',
+    'Ready for Customer Pickup',
+    'Cancelled',
+    'Ready for Backroom Pick',
+    'Ready for Packing',
+    'Packing In Progress',
+    'Packed',
+    'Shipped',
+  ];
+  filteredShipments: any;
 
   constructor(private router: Router, private http: HttpClient, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
-
+    this.applicableStatuses.forEach((status: string | number) => {
+      this.statusFilters[status] = false;
+    });
     this.getShipmentsData();
-
+    this.resetFilter();
   }
+
 
   checkForEmptyFields(data: any) {
     return !(data == undefined || data === "");
@@ -115,6 +131,7 @@ export class ShipmentComponent {
 
       }
     }
+    this.filteredShipments = JSON.parse(JSON.stringify(this.shipments));
 
   }
 
@@ -137,4 +154,43 @@ export class ShipmentComponent {
   onClose() {
     this.router.navigate(['/home']);
   }
+
+  applyFilters() {
+    const selectedStatuses = Object.keys(this.statusFilters).filter(status => this.statusFilters[status]);
+    if (selectedStatuses.length > 0) {
+      let filteredData: any[] = [];
+      this.shipments.Shipment.forEach((shipment: any) => {
+        if (selectedStatuses.includes(shipment.Status)) {
+          filteredData.push(shipment);
+        }
+      });
+      this.filteredShipments["Shipment"] = [];
+      this.filteredShipments["Shipment"] = JSON.parse(JSON.stringify(filteredData));
+      this.filteredShipments["TotalNumberOfRecords"] = JSON.parse(JSON.stringify(filteredData.length));
+    } else {
+
+      this.resetFilter();
+    }
+    this.isPopoverOpen = false;
+    this.refreshCounter++;
+  }
+
+
+  resetFilter() {
+    this.statusFilters = {};
+    this.applicableStatuses.forEach((status: string | number) => {
+      this.statusFilters[status] = false;
+    });
+    if (!!this.shipments && !!this.shipments["Shipment"] && !!JSON.parse(JSON.stringify(this.shipments["Shipment"]))) {
+      this.filteredShipments["Shipment"] = JSON.parse(JSON.stringify(this.shipments["Shipment"]));
+      this.filteredShipments["TotalNumberOfRecords"] = JSON.parse(JSON.stringify(this.shipments["TotalNumberOfRecords"]));
+    }
+    this.isPopoverOpen = false;
+    this.refreshCounter++;
+  }
+
+  togglePopover() {
+    this.isPopoverOpen = !this.isPopoverOpen;
+  }
+
 }

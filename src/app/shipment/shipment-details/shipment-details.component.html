@@ -1,0 +1,96 @@
+<div class="navigation">
+  <div class="right-div"><a class="link-text" [routerLink]="['/shipment/results']"
+      [queryParams]="{ shipmentNumber: this.shipmentNo}">
+      < </a> <span class="separator">&nbsp;|&nbsp;</span> <span class="shipment-search">{{
+          'SEARCH.SHIPMENT_SEARCH_RESULT' | translate }}</span></div>
+  <div class="left-div">
+    <button class="close-btn" (click)="onClose()">{{ 'SEARCH.CLOSE' | translate }}</button>
+  </div>
+</div>
+
+<div class="center-screen" *ngIf="shipment?.DeliveryMethod == undefined">{{ 'home.NO_DATA_FOUND' | translate }}</div>
+
+
+<div *ngIf="shipment?.DeliveryMethod">
+
+  <!-- Expandable Div -->
+  <div *ngIf="isDivExpanded" class="expandable-div">
+    <!-- Bill to Shipment Section -->
+    <p class="status">{{shipment?.Status}}</p>
+    <p>{{ 'home.SHIPMENT_NO' | translate }} <br>{{shipmentNo}}</p>
+
+    <div *ngIf="shipment?.DeliveryMethod === 'SHP'">
+      <p>{{ 'home.CARRIER' | translate }} <br>{{getPropertyValue(shipment?.Shipment?.ScacAndService )}}</p>
+      <p>{{ 'home.EXPECTED_SHIP_DATE' | translate }}: {{ getPropertyValue(shipment?.ExpectedShipDate) }}</p>
+    </div>
+    <div *ngIf="shipment?.DeliveryMethod === 'PICK'">
+      <p>{{ 'home.EXPECTED_PICKUP_DATE' | translate }}: {{ getPropertyValue(shipment?.ExpectedPickupDate) }}</p>
+    </div>
+    <p>{{ 'home.CUSTOMER_INFO' | translate }}
+      <br>{{ getPropertyValue(shipment?.BillToAddress?.FirstName) }}
+      <br> {{ getPropertyValue(shipment?.BillToAddress?.Phonenumber) }}
+      <br> {{ getPropertyValue(shipment?.BillToAddress?.EmailID) }}
+    </p>
+    <p>
+      {{ 'home.ASSIGN_TO' | translate }} <br> {{getPropertyValue(shipment?.AssignedToUserId)}}
+    </p>
+    <p>
+      {{ 'home.SHIP_TO' | translate }}
+      <br>{{getPropertyValue(shipment?.ToAddress?.FirstName)}}&nbsp;{{getPropertyValue(shipment?.ToAddress?.LastName)}}
+      <br>{{getPropertyValue(getElement(shipment?.ToAddress?.AddressLine1, 0))}}
+      <br>{{getPropertyValue(getElement(shipment?.ToAddress?.AddressLine1, 1))}}
+      <br>{{getPropertyValue(shipment?.ToAddress?.City)}},&nbsp;
+      {{getPropertyValue(shipment?.ToAddress?.State)}},&nbsp;
+      {{getPropertyValue(shipment?.ToAddress?.ZipCode)}}&nbsp;
+      <br>{{getPropertyValue(shipment?.ToAddress?.Country)}}
+    </p>
+
+    <p>
+      {{ 'home.BILL_TO' | translate }}
+      <br>{{ getPropertyValue(shipment?.BillToAddress?.FirstName) }}
+      <br>{{getPropertyValue(shipment?.BillToAddress?.AddressID)}}
+      <br>{{getPropertyValue(getElement(shipment?.BillToAddress?.AddressLine1, 1))}}
+      <br>{{getPropertyValue(shipment?.BillToAddress?.City)}},&nbsp;
+      {{getPropertyValue(shipment?.BillToAddress?.State)}},&nbsp;
+      {{getPropertyValue(getElement(shipment?.BillToAddress?.AddressLine1, 0))}}
+      <br>{{getPropertyValue(shipment?.BillToAddress?.Country)}}
+    </p>
+    <p (click)="toggleDiv()" class="link">{{ 'home.HIDE_INFO' | translate }}</p>
+
+  </div>
+  <div *ngIf="!isDivExpanded" class="expandable-div">
+    <p class="status">{{shipment?.Status}}</p>
+    <p>{{ 'home.SHIPMENT_NO' | translate }} <br>{{shipmentNo}}</p>
+
+    <div *ngIf="shipment?.DeliveryMethod === 'SHP'">
+      <p>{{ 'home.EXPECTED_SHIP_DATE' | translate }}: {{ getPropertyValue(shipment?.ExpectedShipDate) }}</p>
+    </div>
+    <div *ngIf="shipment?.DeliveryMethod === 'PICK'">
+      <p>{{ 'home.EXPECTED_PICKUP_DATE' | translate }}: {{ getPropertyValue(shipment?.ExpectedPickupDate) }}</p>
+    </div>
+
+    <p>
+      {{ 'home.SHIP_TO' | translate }}
+
+      <br>{{getPropertyValue(shipment?.ToAddress?.City)}},&nbsp;
+      {{getPropertyValue(shipment?.ToAddress?.State)}},&nbsp;
+      {{getPropertyValue(shipment?.ToAddress?.ZipCode)}}
+    </p>
+
+    <p (click)="toggleDiv()" class="link">{{ 'home.SHOW_INFO' | translate }}</p>
+  </div>
+
+  <div class="product-disp">
+    <p class="product-title">{{ 'home.PRODUCTS' | translate }} ({{
+      getPropertyValue(shipment?.ShipmentLines?.TotalNumberOfRecords) }})</p>
+    <div class="product" *ngFor="let product of shipment?.ShipmentLines?.ShipmentLine">
+      <img [src]="getPropertyValue(product.OrderLine?.ItemDetails?.ImageUrl)" alt="Product Image" width="150px"
+        height="150px">
+      <br>{{ getPropertyValue(product?.OrderLine?.ItemDetails?.Description) }}
+      <br>{{ 'home.PRODUCT_ID' | translate }}: {{ getPropertyValue(product?.OrderLine?.ItemDetails?.ItemID) }}
+      <br>{{ 'home.QUANTITY' | translate }}: {{ getPropertyValue(product?.Quantity) }}&nbsp;{{
+      getPropertyValue(product?.OrderLine?.ItemDetails?.DisplayUnitOfMeasure) }}
+    </div>
+
+  </div>
+</div>

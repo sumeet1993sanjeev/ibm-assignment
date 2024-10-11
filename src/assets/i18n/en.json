@@ -1,0 +1,33 @@
+{
+    "home": {
+      "LABEL_WhatDoYouWantToDO": "What do you want to do?",
+      "ORDER_NUMBER":"Order #",
+      "SHIPMENT_NUMBER":"Shipment #",
+      "FIRST_NAME":"First Name",
+      "LAST_NAME": "Last Name",
+      "EMAIL_ID": "Email ID",
+      "PHONE_NUMBER":"Phone Number",
+      "SHIPMENT_SEARCH": "Shipment Search",
+      "RESET": "Reset",
+      "SEARCH": "Search",
+      "BACK": "Back",
+      "SHOW_INFO": "Show Info",
+      "HIDE_INFO": "Hide Info",
+      "PRODUCTS": "Products",
+      "PRODUCT_ID": "Product ID",
+      "QUANTITY":"Quantity",
+      "NO_DATA_FOUND":"No data found",
+      "SHIPMENT_NO":"Shipment Number",
+      "CARRIER":"Carrier",
+      "EXPECTED_SHIP_DATE":"Expected Ship Date",
+      "EXPECTED_PICKUP_DATE":"Expected Pickup Date",
+      "CUSTOMER_INFO": "Customer Info",
+      "ASSIGN_TO":"Assigned To",
+      "SHIP_TO":"Ship To",
+      "BILL_TO": "Bill To"
+    },
+    "SEARCH": {
+      "CLOSE": "Close",
+      "SHIPMENT_SEARCH_RESULT": "Shipment search results"
+    }
+  }

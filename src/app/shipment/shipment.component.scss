@@ -1,0 +1,72 @@
+.disp_width {
+    background-color: white;
+    padding: 10px;
+}
+
+.result {
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    padding-top: 25px;
+    border-left: none;
+    border-right: none;
+}
+.navigation {
+    display: flex; 
+    height: 40px;
+    border: 1px solid black;
+    border-bottom: none;
+}
+.separator {
+    font-size: 22px;
+    color: gray;
+}
+.shipment-search{
+    font-size: 19px;
+    font-weight: bold;
+}
+.right-div {
+    display: inline-block;
+    flex: 1; 
+    padding-top: 8px;
+    padding-left: 20px;
+}
+.left-div {
+    display: inline-block;
+    padding-top: 11px;
+    padding-right: 20px;
+}
+.close-btn {
+    background-color: white;
+    color: #0672CB;
+    border-color: #0672CB;
+    border-width: 1px;
+}
+
+.table-cls {
+    width: 80%;
+}
+
+.result-txt {
+    font-size: 10px;
+}
+.shipment-size {
+    font-size: 25px;
+    font-weight: bold;
+    padding-left: 38px;
+}
+
+.center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    flex-direction: column; /* Ensures content stacks vertically */
+  }
+
+  .link-text{
+    text-decoration: none;
+    font-size: 18px;
+    color: #0672CB;
+  }

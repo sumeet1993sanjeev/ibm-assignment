@@ -1,0 +1,13 @@
+<div class="disp_width">
+        <div class="navigation"> 
+            <div class="right-div"><a class="link-text" [routerLink]="['/home']"> < </a> <span class="separator">&nbsp;|&nbsp;</span> <span class="shipment-search">{{ 'SEARCH.SHIPMENT_SEARCH_RESULT' | translate }}</span></div>
+            <div class="left-div">
+                    <button class="close-btn" (click)="onClose()">{{ 'SEARCH.CLOSE' | translate }}</button>
+            </div>
+        </div>
+    <div class="result" >
+       <span class="shipment-size"> {{getLength(shipments?.TotalNumberOfRecords)}}</span><span class="result-txt">&nbsp;results</span>
+   <app-common-table *ngIf="getLength(shipments?.TotalNumberOfRecords) != '0'" [shipments] ="shipments" class="table-cls" [refreshCounter]="refreshCounter"></app-common-table>
+    </div>
+   <div class="center-screen" *ngIf="getLength(shipments?.TotalNumberOfRecords) == '0'"> {{'home.NO_DATA_FOUND' | translate}}</div>
+</div>

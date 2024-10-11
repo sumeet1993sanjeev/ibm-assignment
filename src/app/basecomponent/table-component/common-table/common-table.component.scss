@@ -1,0 +1,35 @@
+.black-border-table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures borders are not doubled */
+    border: 2px solid black; /* Black border for the entire table */
+    border-right: none;
+  }
+  
+  .black-border-table th,
+  .black-border-table{
+    border: 1px solid black; /* Black border for each cell */
+    padding: 10px; /* Optional: adds some padding to the cells */
+    text-align: left; /* Optional: aligns text to the left */
+    border-right: none;
+    border-left: none;
+  }
+  
+  .black-border-table tr {
+    border: 1px solid black; /* Black border for each row */
+    border-right: none;
+    border-left: none;
+  }
+  .black-border-table td {
+    height: 80px; /* Set a fixed width for each column */
+    border: none;
+    padding: 10px;
+    text-align: left;
+    padding-left: 65px;
+  }
+  .status {
+    color: plum;
+  }
+  .link {
+    color: #0672CB;
+    text-decoration: none;
+  }

@@ -1,0 +1,22 @@
+<div class="container">
+  <p class="header-text">{{ 'home.LABEL_WhatDoYouWantToDO' | translate }}</p>
+
+  <div class="disp_width">
+    <div class="search-container">
+      <span class="search-label">{{ 'home.SHIPMENT_SEARCH' | translate }}</span>
+      <input type="text" class="input-txt" placeholder="{{ 'home.ORDER_NUMBER' | translate }}"
+        [(ngModel)]="orderNumber" />
+      <input type="text" class="input-txt" placeholder="{{ 'home.SHIPMENT_NUMBER' | translate }}"
+        [(ngModel)]="shipmentNumber" />
+      <input type="text" class="input-txt" placeholder="{{ 'home.FIRST_NAME' | translate }}" [(ngModel)]="firstName" />
+      <input type="text" class="input-txt" placeholder="{{ 'home.LAST_NAME' | translate }}" [(ngModel)]="lastName" />
+      <input type="text" class="input-txt" placeholder="{{ 'home.EMAIL_ID' | translate }}" [(ngModel)]="emailId" />
+      <input type="text" class="input-txt" placeholder="{{ 'home.PHONE_NUMBER' | translate }}"
+        [(ngModel)]="phoneNumber" />
+      <div class="button-container">
+        <button class="btn-reset" (click)="onReset()">{{ 'home.RESET' | translate }}</button>
+        <button class="btn-search" (click)="onSearch()">{{ 'home.SEARCH' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<div class="shipment-list" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="loadMoreShipments()">
+    <div *ngFor="let shipment of shipments">{{ shipment.shipmentNo }}</div>
+  </div>
+  

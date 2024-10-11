@@ -1,0 +1,21 @@
+<table class="black-border-table">
+    <tbody>
+      <tr *ngFor="let shipment of shipments.Shipment" (click)="onRowClick(shipment)">
+        <td>{{ getPropertyValue(shipment.OrderNo) }}<br>
+        {{ getPropertyValue(shipment?.ShipmentLines?.TotalNumberOfRecords) + " products"}}<br>
+        {{'home.CARRIER' | translate}}: {{ getPropertyValue(shipment?.ScacAndService) }}<br>
+        {{'home.SHIPMENT_NUMBER' | translate}} <a [routerLink]="['/shipment/details', shipment.ShipmentNo]" (click)="onLinkClick()" class="link">{{ getPropertyValue(shipment.ShipmentNo) }}</a></td>
+
+        <td><label class="status">{{ getPropertyValue(shipment.Status) }}</label><br>
+          {{'home.ASSIGN_TO' | translate}}: {{ getPropertyValue(shipment.AssignedToUserId) }}<br>
+          {{'home.EXPECTED_PICKUP_DATE' | translate}}: {{ getPropertyValue(shipment.ExpectedShipmentDate) }}</td>
+
+
+        <td>{{'home.CUSTOMER_INFO' | translate}}<br>
+        {{ getPropertyValue(shipment?.BillToAddress?.FirstName) +' '+getPropertyValue(shipments?.BillToAddress?.LastName) }} <br>
+        {{ getPropertyValue(shipment?.BillToAddress?.DayPhone) }} <br>
+        {{ getPropertyValue(shipment?.BillToAddress?.EMailID) }}</td>
+        
+      </tr>
+    </tbody>
+  </table>
